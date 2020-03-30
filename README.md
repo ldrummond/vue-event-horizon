@@ -1,24 +1,29 @@
-# vue-event-horizon
+# Event Horizon
+This is an implementation of the Event Horizon scroll and parallax library as a vue directive.   
 
 ## Project setup
-```
-npm install
+Add as a directive / plugin
+
+## Usage
+```jsx
+<div vue-event-horizon:trigger />
+<div vue-event-horizon:trigger.once />
+<div vue-event-horizon:trigger="(el, is_visible) => onVisibilityChange(el, is_visible)" />
+<div vue-event-horizon:parallax="{x: {from: 0, to: 2, at: 1}}" />
 ```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
+Trigger adds classes
+
+```jsx
+<div vue-event-horizon:trigger />
+...
+<div class="trigger-0 trigger-25 trigger-50 trigger-75"/>
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+Parallax adds transforms
 
-### Lints and fixes files
+```jsx
+<div vue-event-horizon:parallax="{x: {from: 0, to: 2, at: 1}}" />
+...
+<div style="transform: translateX(0.5px)"  />
 ```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
