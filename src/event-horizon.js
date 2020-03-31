@@ -1,5 +1,10 @@
 import { throttle, find } from "lodash";
 
+/**
+ * 
+ *  A non-vue extension of event horizon to use Intersection Observer
+ * 
+ */
 class EventHorizon {
   constructor() {
     // bindings
