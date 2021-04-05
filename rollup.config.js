@@ -1,6 +1,8 @@
 import babel from 'rollup-plugin-babel'
 import resolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
+import del from 'rollup-plugin-delete'
+import { uglify } from "rollup-plugin-uglify";
 
 import {version} from './package.json'
 
@@ -17,6 +19,7 @@ export default {
   */`,
     },
     plugins: [
+				del({ targets: 'dist/*' }),
         resolve(),
         commonjs(),
         babel({
@@ -24,5 +27,6 @@ export default {
             presets: ['@babel/env'],
             plugins: ['@babel/transform-object-assign'],
         }),
+				uglify()
     ],
 }
