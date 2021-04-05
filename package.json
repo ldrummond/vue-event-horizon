@@ -13,6 +13,10 @@
   "author": {
     "name": "Lucas Drummond & Matt Wiggins"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ldrummond/vue-event-horizon"
+  },
   "dependencies": {
     "intersection-observer": "^0.12.0"
   },
