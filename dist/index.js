@@ -1,5 +1,5 @@
 /*!
-  * vue-event-horizon v0.0.0-development
+  * vue-event-horizon v1.0.0
   * (c) 2021 Lucas Drummond & Matt Wiggins
   * @license MIT
   */
@@ -496,7 +496,7 @@ var needs_io_polyfill = !("IntersectionObserver" in window) || !("IntersectionOb
 var io_load_promise;
 
 if (needs_io_polyfill) {
-  io_load_promise = import('./intersection-observer-0905e8c5.js');
+  io_load_promise = import('./intersection-observer-391865dc.js');
 } else {
   io_load_promise = Promise.resolve();
 }

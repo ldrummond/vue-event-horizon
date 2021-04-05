@@ -1,3 +1,4 @@
+// TODO
 const { resolve } = require('path')
 
 module.exports = function nuxtVueScrollTo(moduleOptions) {

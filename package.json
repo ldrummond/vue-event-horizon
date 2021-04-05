@@ -1,6 +1,6 @@
 {
   "name": "vue-event-horizon",
-  "version": "0.0.0-development",
+  "version": "1.0.0",
   "description": "Adds a directive that listens for click events and scrolls to elements.",
   "main": "dist/index.js",
   "keywords": [
