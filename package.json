@@ -1,6 +1,6 @@
 {
   "name": "vue-event-horizon",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Adds a directive that listens for click events and scrolls to elements.",
   "main": "dist/index.js",
   "keywords": [
@@ -18,8 +18,7 @@
     "url": "https://github.com/ldrummond/vue-event-horizon"
   },
   "dependencies": {
-    "intersection-observer": "^0.12.0",
-    "rollup-plugin-uglify": "^6.0.4"
+    "intersection-observer": "^0.12.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
@@ -30,7 +29,8 @@
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-delete": "^2.0.0",
-    "rollup-plugin-node-resolve": "^5.2.0"
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-uglify": "^6.0.4"
   },
   "scripts": {
     "build": "rollup -c",

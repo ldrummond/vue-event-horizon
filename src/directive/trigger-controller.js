@@ -70,7 +70,9 @@
           _node.callback(_node.el, true)
         }
       } else {
-        entry.target.classList.remove(`trigger-${threshold}`)
+        if(_node.modifiers.cleanup) { // remove classes once out of view 
+          entry.target.classList.remove(`trigger-${threshold}`) 
+        }
         // if has callback, call it on leave with false
         if (_node && _node.callback && threshold === 0) {
           _node.callback(_node.el, false)
