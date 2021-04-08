@@ -50,7 +50,9 @@
   onNodeVisibilityChange (entries, observer, threshold) {
     entries.forEach((entry) => {
       // Ignore if element is past the viewport
-      // if (entry.boundingClientRect.bottom <= 0) return // (why do we have this again? TODO: Make this optional)
+      if(_node && !_node.modifiers.cleanup) {
+        if (entry.boundingClientRect.bottom <= 0) return // (why do we have this again? TODO: Make this optional)
+      }
 
       const _uid = entry.target.getAttribute("data-event-horizon-uid")
       const _node = this._nodes[_uid]
@@ -70,9 +72,8 @@
           _node.callback(_node.el, true)
         }
       } else {
-        if(_node.modifiers.cleanup) { // remove classes once out of view 
-          entry.target.classList.remove(`trigger-${threshold}`) 
-        }
+        entry.target.classList.remove(`trigger-${threshold}`);
+        
         // if has callback, call it on leave with false
         if (_node && _node.callback && threshold === 0) {
           _node.callback(_node.el, false)
