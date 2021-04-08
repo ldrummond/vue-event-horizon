@@ -84,6 +84,10 @@ export class EventHorizonParallax {
         case "o":
           _callback = (fxs, prop_vals) => { fxs.opacity = prop_vals.at }
           break
+        case "z":
+          _callback = (fxs, prop_vals) => { fxs.zIndex = Math.round(prop_vals.at)}
+        default: 
+          break; 
       }
       _node.opts[prop_type].callback = _callback
     }
