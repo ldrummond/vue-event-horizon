@@ -9,6 +9,7 @@
     this._nodes = {} // Object to prioritize lookup time
     this._event_horizons = 5
     this._thresholds = []
+    this._threshold_names = []
     this._observers = []
 
     // bindings
@@ -21,12 +22,16 @@
     this.constructObservers()
   }
 
+  /**
+   * 
+   */
   constructObservers () {
     let observer
 
     for (let i = 0; i < this._event_horizons; i++) {
       const threshold = (1 / (this._event_horizons - 1)) * i * 100
       this._thresholds.push(threshold)
+      this._threshold_names.push(`trigger-${threshold}`);
 
       observer = new IntersectionObserver(
         (entries, observer) =>
@@ -39,6 +44,10 @@
     }
   }
 
+  /**
+   * 
+   * @param {*} _node 
+   */
   observeNode (_node) {
     this._nodes[_node.uid] = _node
 
@@ -47,6 +56,26 @@
     })
   }
 
+  /**
+   * Custom classes may be overwritten by Vue reactive classes.
+   * Use node to persist EH classes and apply them on top of Vue classes. 
+   * @param {*} el 
+   */
+  updatePersistNodeState (el) {
+    const uid = el && el.getAttribute("data-event-horizon-uid")
+    const node = uid && this._nodes[uid];
+    const previous_classes = node && node.classList; 
+    if(previous_classes && previous_classes.length) {
+      previous_classes.forEach(_class => el.classList.add(_class)); 
+    }
+  }
+
+  /**
+   * 
+   * @param {*} entries 
+   * @param {*} observer 
+   * @param {*} threshold 
+   */
   onNodeVisibilityChange (entries, observer, threshold) {
     entries.forEach((entry) => {
       const _uid = entry.target.getAttribute("data-event-horizon-uid")
@@ -82,9 +111,16 @@
           _node.callback(_node.el, false)
         }
       }
+
+      // Store classes in node
+      _node.classList = Array.from(entry.target.classList).filter(_class => this._threshold_names.includes(_class)); 
     })
   }
 
+  /**
+   * 
+   * @param {*} _uid 
+   */
   unobserveNode (_uid) {
     const _node = this._nodes[_uid]
     if (_node) {
