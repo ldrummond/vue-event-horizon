@@ -101,7 +101,7 @@ function bind (el, { arg = "", modifiers = {}, value: opts = {} }, vnode) {
  * @param {*} param1 
  */
 function update (el, { value, oldValue }, vnode, oldVnode) {
-  eventHorizonTriggerController.updatePersistNodeState(el); 
+  eventHorizonTriggerController && eventHorizonTriggerController.updatePersistNodeState(el); 
   // 
   if (deepEqual(value, oldValue)) return;
   if (!value) unbind(el)
